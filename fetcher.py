@@ -23,7 +23,7 @@ while(soup.find(class_="obitName") != None):
 message = PMMail(api_key = os.environ['POSTMARK_API_KEY'],
 				subject = "Daily Obits",
 				sender = "sjdick04@louisville.edu",
-				to = "sd.nfltitan@gmail.com",
+				to = "kjdicken@twc.com",
 				html_body = html_msg,
 				tag = "none"
 				)
