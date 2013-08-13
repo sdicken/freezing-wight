@@ -1,4 +1,6 @@
 import urllib.request
+import os
+from postmark import PMMail
 from bs4 import BeautifulSoup
 # or if you're using BeautifulSoup4:
 # from bs4 import BeautifulSoup
@@ -14,3 +16,12 @@ while(soup.find(class_="obitName") != None):
         print(name.a.get_text())
         print(name.a.get('href'))
     page += 1
+	
+message = PMMail(api_key = os.environ['POSTMARK_API_KEY'],
+				subject = "Daily Obits",
+				sender = "sjdick04@louisville.edu",
+				to = "sd.nfltitan@gmail.com",
+				text_body = "Testing",
+				tag = "none"
+				)
+message.send()
