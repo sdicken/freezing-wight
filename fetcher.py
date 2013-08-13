@@ -1,6 +1,6 @@
 import urllib2
 import os
-#from postmark import PMMail
+from postmark import PMMail
 from bs4 import BeautifulSoup
 # or if you're using BeautifulSoup4:
 # from bs4 import BeautifulSoup
