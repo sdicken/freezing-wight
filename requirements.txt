@@ -1,3 +1,4 @@
 beautifulsoup4==4.3.0
 urllib3==1.6
 virtualenv==1.10.1
+python-postmark==0.3.2
