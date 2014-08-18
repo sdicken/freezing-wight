@@ -8,11 +8,11 @@ from bs4 import BeautifulSoup
 html_msg = ""
 page = 1
 
-url = 'http://www.legacy.com/obituaries/louisville/obituary-search.aspx?page=' + str(page) + '&affiliateid=1175&countryid=0&daterange=1&stateid=20&townname=louisville&keyword=&entriesperpage=50'
+url = 'http://www.legacy.com/obituaries/louisville/obituary-browse.aspx?recentdate=0&type=1'
 soup = BeautifulSoup(urllib2.urlopen(url).read())
 while(soup.find(class_="obitName") != None):
-    url = 'http://www.legacy.com/obituaries/louisville/obituary-search.aspx?page=' + str(page) + '&affiliateid=1175&countryid=0&daterange=1&stateid=20&townname=louisville&keyword=&entriesperpage=50'
-    soup = BeautifulSoup(urllib2.urlopen(url).read())
+    #url = 'http://www.legacy.com/obituaries/louisville/obituary-search.aspx?page=' + str(page) + '&affiliateid=1175&countryid=0&daterange=1&stateid=20&townname=louisville&keyword=&entriesperpage=50'
+    #soup = BeautifulSoup(urllib2.urlopen(url).read())
     obitNames = soup.find_all(class_="obitName")
     for name in obitNames:
         html_msg += "<a href=\"" + name.a.get('href') + "\">" + name.a.get_text() + "</a><br />"
