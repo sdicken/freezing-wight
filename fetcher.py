@@ -32,7 +32,7 @@ message = PMMail(api_key = os.environ['POSTMARK_API_KEY'],
 				subject = "Daily Obits",
 				sender = "sjdick04@louisville.edu",
 				to = "kandjdicken@gmail.com",
-				html_body = html_msg,
+				html_body = str(html_msg),
 				tag = "none"
 				)
 message.send()
