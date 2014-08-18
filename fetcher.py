@@ -14,7 +14,7 @@ f = urllib.request.urlopen(request)
 #print(f.read().decode('utf-8'))
 response = f.read().decode('utf-8')
 data = json.loads(response)
-while(data["NumPageRemaining"] != 0):
+while(data["NumPageRemaining"] > -1):
     url = 'http://www.legacy.com/obituaries/louisville/api/obituary/0?type=1&ln=&page=' + str(page)
     request = urllib.request.Request(url)
     request.add_header("Content-Type","application/json;charset=utf-8")
@@ -23,10 +23,10 @@ while(data["NumPageRemaining"] != 0):
     data = json.loads(response)
     entries = data["Entries"]
     for entry in entries:
-        html_msg += "<a href=\"" + str(entry["obitlink"]) + "\">" + str(entry["name"]) + "</a><br />"
-        #print(entry["name"])
+        html_msg += "<a href=\"" + entry["obitlink"] + "\">" + entry["name"] + "</a><br />"
+        print(entry["name"])
     page += 1
-print(html_msg)
+#print(html_msg)
 	
 message = PMMail(api_key = os.environ['POSTMARK_API_KEY'],
 				subject = "Daily Obits",
