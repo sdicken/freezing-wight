@@ -23,7 +23,7 @@ while(data["NumPageRemaining"] != 0):
     data = json.loads(response)
     entries = data["Entries"]
     for entry in entries:
-        html_msg += "<a href=\"" + entry["obitlink"] + "\">" + entry["name"] + "</a><br />"
+        html_msg += "<a href=\"" + str(entry["obitlink"]) + "\">" + str(entry["name"]) + "</a><br />"
         #print(entry["name"])
     page += 1
 print(html_msg)
@@ -32,7 +32,7 @@ message = PMMail(api_key = os.environ['POSTMARK_API_KEY'],
 				subject = "Daily Obits",
 				sender = "sjdick04@louisville.edu",
 				to = "kandjdicken@gmail.com",
-				html_body = str(html_msg),
+				html_body = html_msg,
 				tag = "none"
 				)
 message.send()
