@@ -2,6 +2,8 @@ import urllib.request, urllib.error, urllib.parse
 import os
 import json
 from postmark import PMMail
+import requests
+from requests.auth import HTTPBasicAuth
 
 html_msg = ""
 page = 1
@@ -28,11 +30,18 @@ while(data["NumPageRemaining"] > -1):
     page += 1
 #print(html_msg)
 	
-message = PMMail(api_key = os.environ['POSTMARK_API_KEY'],
-				subject = "Daily Obits",
-				sender = "sjdick04@louisville.edu",
-				to = "kandjdicken@gmail.com",
-				html_body = html_msg,
-				tag = "none"
-				)
-message.send()
+#message = PMMail(api_key = os.environ['POSTMARK_API_KEY'],
+#				subject = "Daily Obits",
+#				sender = "sjdick04@louisville.edu",
+#				to = "kandjdicken@gmail.com",
+#				html_body = html_msg,
+#				tag = "none"
+#				)
+#message.send()
+
+r = requests.post('https://api.mailgun.net/v3/'+ os.environ['MAILGUN_DOMAIN'] +'/messages',
+	     auth=('api', os.environ['MAILGUN_API_KEY']),
+	     from= os.environment['FROM_EMAIL'],
+	     to=os.environ['TO_EMAIL'],
+	     subject='Daily Obits',
+	     text=html_msg)
