@@ -1,1 +1,2 @@
 python-postmark==0.4.3
+requests=2.13.0
