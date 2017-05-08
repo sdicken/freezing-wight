@@ -39,9 +39,7 @@ while(data["NumPageRemaining"] > -1):
 #				)
 #message.send()
 
+payload = {'from': os.environ['FROM_EMAIL'], 'to' = os.environ['TO_EMAIL'], 'subject': 'Daily Obits', 'text': html_msg}
 r = requests.post('https://api.mailgun.net/v3/'+ os.environ['MAILGUN_DOMAIN'] +'/messages',
 	     auth=('api', os.environ['MAILGUN_API_KEY']),
-	     from= os.environment['FROM_EMAIL'],
-	     to=os.environ['TO_EMAIL'],
-	     subject='Daily Obits',
-	     text=html_msg)
+	     files=payload)
